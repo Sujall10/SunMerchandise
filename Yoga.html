@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Categories | Your Company Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="css - Copy\style.css"> -->
+    <style>
+        /* Reset and Base Styles */
+        :root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #F5F5F5;
+    --accent-color: #FF6B00;
+    --light-color: #F5F5F5;
+    --dark-color: #FFFFFF;
+    --text-color: #333333;
+    --text-light: #666666;
+    --white: #FFFFFF;
+    --black: #000000;
+    --font-main: 'Roboto', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+}
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--dark-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Navigation Styles */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav ul li {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .main-nav ul li a {
+            color: var(--text-color);
+            font-weight: 600;
+            padding: 10px 0;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .main-nav ul li a.active {
+            color: var(--black);
+        }
+
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav ul li a:hover::after,
+        .main-nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            border-top: 3px solid var(--accent-color);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #333;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            background: none;
+            border: none;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background-color: var(--dark-color);
+            z-index: 1001;
+            transition: all 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-logo {
+            height: 40px;
+        }
+
+        .close-menu {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            background: none;
+            border: none;
+        }
+
+        .mobile-nav ul {
+            padding: 20px;
+            list-style: none;
+        }
+
+        .mobile-nav ul li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            padding: 12px 0;
+            color: var(--text-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .mobile-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding-left: 15px;
+        }
+
+        .mobile-dropdown a {
+            padding: 10px 0 !important;
+            font-weight: 500 !important;
+        }
+
+        .mobile-dropdown.active {
+            max-height: 500px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            color: var(--white);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--dark-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    padding: 20px 0;
+    background-color: var(--secondary-color);
+}
+
+.breadcrumb-nav {
+    display: flex;
+    list-style: none;
+}
+
+.breadcrumb-nav li {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.breadcrumb-nav li:after {
+    content: '/';
+    margin-left: 10px;
+    color: var(--text-light);
+}
+
+.breadcrumb-nav li:last-child:after {
+    display: none;
+}
+
+.breadcrumb-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.page-title h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+.page-title p {
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Category Filters */
+.category-filters {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--black);
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.product-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-category {
+    color: var(--accent-color);
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.product-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--black);
+}
+
+.product-description {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.product-price {
+    font-weight: bold;
+    color: var(--black);
+}
+
+.view-btn {
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.view-btn:hover {
+    background-color: #e05a00;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.pagination-list {
+    display: flex;
+    list-style: none;
+}
+
+.pagination-item {
+    margin: 0 5px;
+}
+
+.pagination-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: var(--white);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid #ddd;
+}
+
+.pagination-link:hover, .pagination-link.active {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+}
+
+/* Call to Action */
+.cta-section {
+    background-color: var(--secondary-color);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--black);
+}
+
+.cta-content p {
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #e05a00;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 80px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    color: var(--white);
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.8s ease-in-out;
+}
+
+.footer-col.visible h3::after {
+    width: 50px;
+}
+
+.footer-logo {
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--white);
+    padding-left: 5px;
+}
+
+.contact-info li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--accent-color);
+    width: 20px;
+    text-align: center;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    border: none;
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--black);
+    transform: translateY(-5px);
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .page-title h1 {
+        font-size: 2rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .page-title h1 {
+        font-size: 1.8rem;
+    }
+
+    .filter-options {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+}
+    </style>
+    <!-- <link rel="stylesheet" href="css - Copy\style.css"> -->
+</head>
+<body>
+    <!-- Header -->
+        <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="SunMerchandise_Products\Logo Sms.jpg" alt="Sun Merchandising Services">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" >Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="products.html" class="active">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="Apparel.html">Apparel</a>
+                            <a href="Baby.html">Baby & Kids</a>
+                            <a href="Toys.html">Toys</a>
+                            <a href="Home_Textile.html">Home Textile</a>
+                            <a href="Yoga.html">Yoga & Wellness</a>
+                            <a href="Fashion.html">Fashion Accessories</a>
+                            <a href="products.html">Other Categories</a>
+                        </div>
+                    </li>
+                    <li><a href="Sustainability.html">Sustainability</a></li>
+                    <li><a href="services.html">Process</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <img src="SunMerchandise_Products\Hero.jpg" alt="Swasttik Plastic Industries" class="mobile-logo">
+            <div class="close-menu"><i class="fas fa-times"></i></div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                    <li><a href="index.html" >Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="products.html" class="active">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="Apparel.html">Apparel</a>
+                            <a href="Baby.html">Baby & Kids</a>
+                            <a href="Toys.html">Toys</a>
+                            <a href="Home_Textile.html">Home Textile</a>
+                            <a href="Yoga.html">Yoga & Wellness</a>
+                            <a href="Fashion.html">Fashion Accessories</a>
+                            <a href="products.html">Other Categories</a>
+                        </div>
+                    </li>
+                    <li><a href="Sustainability.html">Sustainability</a></li>
+                    <li><a href="services.html">Process</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+        </nav>
+    </div>
+
+    <!-- Page Banner -->
+    <!-- <section class="page-banner">
+        <div class="container">
+            <h1>About Swasttik Plastic Industries</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                </ol>
+            </nav>
+        </div>
+    </section> -->
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Apparel</h1>
+            <p>Explore our wide range of high-quality products designed to meet your needs. We offer innovative solutions across multiple categories.</p>
+        </div>
+    </section>
+
+    <!-- Category Filters -->
+    <!-- <section class="category-filters">
+        <div class="container">
+            <div class="filter-group">
+                <h3>Categories</h3>
+                <div class="filter-options">
+                    <button class="filter-btn active">All Products</button>
+                    <button class="filter-btn">Electronics</button>
+                    <button class="filter-btn">Home Appliances</button>
+                    <button class="filter-btn">Furniture</button>
+                    <button class="filter-btn">Lighting</button>
+                    <button class="filter-btn">Security</button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h3>Price Range</h3>
+                <div class="filter-options">
+                    <button class="filter-btn">Under $50</button>
+                    <button class="filter-btn">$50 - $100</button>
+                    <button class="filter-btn">$100 - $200</button>
+                    <button class="filter-btn">Over $200</button>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Product Grid -->
+    <section class="product-grid-section">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Smart+LED+Bulb" alt="Smart LED Bulb">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Lighting</span>
+                        <h3 class="product-title">Smart LED Bulb</h3>
+                        <p class="product-description">Energy-efficient smart bulb with 16 million colors, compatible with Alexa and Google Home.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$24.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Wireless+Headphones" alt="Wireless Headphones">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Electronics</span>
+                        <h3 class="product-title">Wireless Headphones</h3>
+                        <p class="product-description">Premium noise-canceling wireless headphones with 30-hour battery life.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$89.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Smart+Thermostat" alt="Smart Thermostat">
+                        <span class="product-badge">Bestseller</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Home Appliances</span>
+                        <h3 class="product-title">Smart Thermostat</h3>
+                        <p class="product-description">Programmable smart thermostat that learns your schedule and saves energy.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$129.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Security+Camera" alt="Security Camera">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Security</span>
+                        <h3 class="product-title">Security Camera</h3>
+                        <p class="product-description">1080p HD security camera with night vision and motion detection.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$59.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Modern+Desk" alt="Modern Desk">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Furniture</span>
+                        <h3 class="product-title">Modern Desk</h3>
+                        <p class="product-description">Sleek and sturdy modern desk with cable management system.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$199.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Robot+Vacuum" alt="Robot Vacuum">
+                        <span class="product-badge">Sale</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Home Appliances</span>
+                        <h3 class="product-title">Robot Vacuum</h3>
+                        <p class="product-description">Smart robot vacuum with app control and automatic charging.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$249.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Smart+Plug" alt="Smart Plug">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Electronics</span>
+                        <h3 class="product-title">Smart Plug</h3>
+                        <p class="product-description">WiFi smart plug that lets you control devices from anywhere.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$19.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=LED+Strip+Lights" alt="LED Strip Lights">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Lighting</span>
+                        <h3 class="product-title">LED Strip Lights</h3>
+                        <p class="product-description">Color-changing LED strip lights with remote control and adhesive backing.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$29.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            
+
+
+
+            <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Smart+LED+Bulb" alt="Smart LED Bulb">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Lighting</span>
+                        <h3 class="product-title">Smart LED Bulb</h3>
+                        <p class="product-description">Energy-efficient smart bulb with 16 million colors, compatible with Alexa and Google Home.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$24.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Wireless+Headphones" alt="Wireless Headphones">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Electronics</span>
+                        <h3 class="product-title">Wireless Headphones</h3>
+                        <p class="product-description">Premium noise-canceling wireless headphones with 30-hour battery life.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$89.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Smart+Thermostat" alt="Smart Thermostat">
+                        <span class="product-badge">Bestseller</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Home Appliances</span>
+                        <h3 class="product-title">Smart Thermostat</h3>
+                        <p class="product-description">Programmable smart thermostat that learns your schedule and saves energy.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$129.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Security+Camera" alt="Security Camera">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Security</span>
+                        <h3 class="product-title">Security Camera</h3>
+                        <p class="product-description">1080p HD security camera with night vision and motion detection.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$59.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Modern+Desk" alt="Modern Desk">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Furniture</span>
+                        <h3 class="product-title">Modern Desk</h3>
+                        <p class="product-description">Sleek and sturdy modern desk with cable management system.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$199.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Robot+Vacuum" alt="Robot Vacuum">
+                        <span class="product-badge">Sale</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Home Appliances</span>
+                        <h3 class="product-title">Robot Vacuum</h3>
+                        <p class="product-description">Smart robot vacuum with app control and automatic charging.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$249.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=Smart+Plug" alt="Smart Plug">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Electronics</span>
+                        <h3 class="product-title">Smart Plug</h3>
+                        <p class="product-description">WiFi smart plug that lets you control devices from anywhere.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$19.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/400x300?text=LED+Strip+Lights" alt="LED Strip Lights">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Lighting</span>
+                        <h3 class="product-title">LED Strip Lights</h3>
+                        <p class="product-description">Color-changing LED strip lights with remote control and adhesive backing.</p>
+                        <div class="product-meta">
+                            <span class="product-price">$29.99</span>
+                            <a href="#" class="view-btn">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+            <!-- Pagination -->
+            <!-- <div class="pagination">
+                <ul class="pagination-list">
+                    <li class="pagination-item"><a href="#" class="pagination-link"><i class="fas fa-chevron-left"></i></a></li>
+                    <li class="pagination-item"><a href="#" class="pagination-link active">1</a></li>
+                    <li class="pagination-item"><a href="#" class="pagination-link">2</a></li>
+                    <li class="pagination-item"><a href="#" class="pagination-link">3</a></li>
+                    <li class="pagination-item"><a href="#" class="pagination-link">4</a></li>
+                    <li class="pagination-item"><a href="#" class="pagination-link"><i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Can't Find What You're Looking For?</h2>
+                <p>We source products from top manufacturers worldwide. Contact us with your specific requirements and we'll help you find the perfect solution.</p>
+                <a href="#" class="cta-btn">Contact Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col fade-in-up">
+                    <img src="SunMerchandise_Products\FProduct1.png" alt="Swasttik Plastic Industries" class="footer-logo">
+                    <p>We transform your ideas into high-quality plastic components with precision, innovation, and care.</p>
+                </div>
+                <div class="footer-col fade-in-up">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="Sustainability.html">Sustainability</a></li>
+                    <li><a href="services.html">Process</a></li>
+                        <!-- <li><a href="applications.html">Applications</a></li> -->
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col fade-in-up">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="Apparel.html">Apparel</a></li>
+                        <li><a href="Baby.html">Baby & Kids</a></li>
+                        <li><a href="Toys.html">Toys</a></li>
+                        <li><a href="Home_Textile.html">Home Textile</a></li>
+                        <li><a href="Yoga.html">Yoga & Wellness</a></li>
+                        <li><a href="Fashion.html">Fashion Accessories</a></li>
+                        <li><a href="products.html">Other Categories</a></li>    
+                    </ul>
+                </div>
+                <div class="footer-col fade-in-up">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 92-C, Udyog Vihar Phase VI, Sector-37, Gurugram, Haryana 122001, India</li>
+                        <li><i class="fas fa-phone"></i> +91 9899402215</li>
+                        <li><i class="fas fa-envelope"></i> info@sunmerchandising.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom fade-in-up">
+                <p>&copy; 2020 - Sun Merchandising Services. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+    
+    
+    <script src="js - Copy\about.js"></script>
+</body>
+</html>

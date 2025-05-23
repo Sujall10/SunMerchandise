@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainability | Sun Merchandising Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        :root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #F5F5F5;
+    --accent-color: #FF6B00;
+    --light-color: #F5F5F5;
+    --dark-color: #FFFFFF;
+    --text-color: #333333;
+    --text-light: #666666;
+    --white: #FFFFFF;
+    --black: #000000;
+    --font-main: 'Roboto', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+}
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--dark-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Navigation Styles */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav ul li {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .main-nav ul li a {
+            color: var(--text-color);
+            font-weight: 600;
+            padding: 10px 0;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .main-nav ul li a.active {
+            color: var(--black);
+        }
+
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav ul li a:hover::after,
+        .main-nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dark-color);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            border-top: 3px solid var(--accent-color);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #333;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            background: none;
+            border: none;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background-color: var(--dark-color);
+            z-index: 1001;
+            transition: all 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-logo {
+            height: 40px;
+        }
+
+        .close-menu {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            background: none;
+            border: none;
+        }
+
+        .mobile-nav ul {
+            padding: 20px;
+            list-style: none;
+        }
+
+        .mobile-nav ul li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            padding: 12px 0;
+            color: var(--text-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .mobile-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding-left: 15px;
+        }
+
+        .mobile-dropdown a {
+            padding: 10px 0 !important;
+            font-weight: 500 !important;
+        }
+
+        .mobile-dropdown.active {
+            max-height: 500px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            color: var(--white);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--dark-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+        /* Page Title */
+
+        .page-title  {
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
+    color: var(--black);
+    padding: 150px 0 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-title ::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 49%, rgba(0,0,0,0.05) 50%, transparent 51%);
+    background-size: 20px 20px;
+    animation: moveBg 30s linear infinite;
+}
+
+.page-title  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+    color: var(--black);
+    animation: fadeInDown 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.5);
+}
+
+.page-title p {
+            color: var(--text-color);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+/* 
+        .page-title {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.1) 0%, rgba(42, 42, 42, 0.8) 100%);
+        }
+
+        .page-title h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .page-title p {
+            color: var(--text-color);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        } */
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            color: var(--black);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
+            transition: width 1.2s ease-in-out;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--primary-color);
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px 20px;
+            background-color: var(--dark-color);
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* Initiatives Section */
+        .initiatives-section {
+            padding: 80px 0;
+        }
+
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .initiative-card {
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .initiative-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .initiative-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .initiative-card p {
+            color: var(--text-light);
+        }
+
+        /* Sustainability Journey Timeline */
+.process-section {
+    background-color: var(--primary-color);
+    padding: 80px 0;
+    position: relative;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--black);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.process-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 100px;
+}
+
+/* Timeline vertical line */
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 70px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--accent-color), var(--light-color));
+    z-index: 1;
+}
+
+.process-item {
+    position: relative;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.process-content {
+    background-color: var(--dark-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    width: calc(100% - 60px);
+    position: relative;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--accent-color);
+}
+
+.process-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.process-number {
+    position: absolute;
+    left: -100px;
+    width: 60px;
+    height: 60px;
+    /* background: linear-gradient(135deg, var(--accent-color), var(--light-color)); */
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    z-index: 2;
+    box-shadow: 0 5px 15px var(--black);
+}
+
+.process-content h3 {
+    color: var(--black);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.process-content p {
+    color: var(--black);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Connector dots */
+/* .process-item:not(:last-child) .process-number::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: #3498db;
+    border-radius: 50%;
+} */
+
+        /* Certifications Section */
+        .certifications-section {
+            padding: 80px 0;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .certification-item {
+            background-color: var(--primary-color);
+            padding: 30px 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .certification-logo {
+            width: 80px;
+            height: 80px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .certification-item h4 {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .certification-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            padding: 60px 0;
+            text-align: center;
+            /* color: var(--black); */
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .cta-content p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: #e05a00;
+            color: white;
+        }
+
+        /* Footer */
+.footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 80px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    color: var(--white);
+    font-size: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.8s ease-in-out;
+}
+
+.footer-col.visible h3::after {
+    width: 50px;
+}
+
+.footer-logo {
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--white);
+    padding-left: 5px;
+}
+
+.contact-info li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--accent-color);
+    width: 20px;
+    text-align: center;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+}
+        @keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes moveBg {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+        /* @media (max-width: 1024px) {
+    .process-content {
+        width: 42%;
+    }
+    
+    .process-item:nth-child(odd) .process-content {
+        margin-right: 50px;
+    }
+    
+    .process-item:nth-child(even) .process-content {
+        margin-left: 50px;
+    }
+} */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    border: none;
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--black);
+    transform: translateY(-5px);
+}
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .main-nav {
+                display: none;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+           .process-timeline {
+        padding-left: 70px;
+    }
+    
+    .process-timeline::before {
+        left: 50px;
+    }
+    
+    .process-number {
+        left: -70px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .process-content {
+        padding: 20px;
+    }
+
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .initiatives-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .initiatives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-section {
+        padding: 60px 0;
+    }
+    
+    .process-timeline {
+        padding-left: 60px;
+    }
+    
+    .process-timeline::before {
+        left: 40px;
+    }
+    
+    .process-number {
+        left: -60px;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    .process-content h3 {
+        font-size: 1.3rem;
+    }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="SunMerchandise_Products\Logo Sms.jpg" alt="Sun Merchandising Services">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="products.html">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="Apparel.html">Apparel</a>
+                            <a href="Baby.html">Baby & Kids</a>
+                            <a href="Toys.html">Toys</a>
+                            <a href="Home_Textile.html">Home Textile</a>
+                            <a href="Yoga.html">Yoga & Wellness</a>
+                            <a href="Fashion.html">Fashion Accessories</a>
+                            <a href="products.html">Other Categories</a>
+                        </div>
+                    </li>
+                    <li><a href="sustainability.html" class="active">Sustainability</a></li>
+                    <!-- <li><a href="Sustainability.html">Sustainability</a></li> -->
+                    <li><a href="services.html" >Process</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <img src="SunMerchandise_Products\Hero.jpg" alt="Sun Merchandising Services" class="mobile-logo">
+            <div class="close-menu"><i class="fas fa-times"></i></div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="dropdown">
+                    <a href="products.html">Products <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="Apparel.html">Apparel</a>
+                        <a href="Baby.html">Baby & Kids</a>
+                        <a href="Toys.html">Toys</a>
+                        <a href="Home_Textile.html">Home Textile</a>
+                        <a href="Yoga.html">Yoga & Wellness</a>
+                        <a href="Fashion.html">Fashion Accessories</a>
+                        <a href="products.html">Other Categories</a>
+                    </div>
+                </li>
+                <li><a href="sustainability.html" class="active">Sustainability</a></li>
+                <!-- <li><a href="Sustainability.html">Sustainability</a></li> -->
+                    <li><a href="services.html" >Process</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Sustainability & Environmental Responsibility</h1>
+            <p>At Sun Merchandising Services, we are committed to sustainable practices and environmental stewardship. Our dedication to responsible manufacturing ensures a better future for generations to come.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Waste Reduction Achieved</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Renewable Energy Usage</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="stat-number">60%</div>
+                    <div class="stat-label">Water Conservation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Trees Planted Annually</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Initiatives Section -->
+    <section class="initiatives-section">
+        <div class="container">
+            <h2 class="section-title">Our Sustainability Initiatives</h2>
+            <div class="initiatives-grid">
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Eco-Friendly Manufacturing</h3>
+                    <p>We have implemented green manufacturing processes that reduce carbon emissions by 50% and minimize environmental impact across all our production facilities and partner networks.</p>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainable Materials</h3>
+                    <p>Our commitment to using organic cotton, recycled polyester, and biodegradable materials ensures that our products have minimal environmental footprint throughout their entire lifecycle.</p>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Carbon-Neutral Shipping</h3>
+                    <p>We offset 100% of our shipping emissions through verified carbon credit programs and prioritize eco-friendly packaging materials and transportation methods.</p>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Impact</h3>
+                    <p>Supporting local communities through fair trade practices, educational programs, and initiatives that promote sustainable development and economic growth in manufacturing regions.</p>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-droplet"></i>
+                    </div>
+                    <h3>Water Conservation</h3>
+                    <p>Advanced water treatment and recycling systems in our partner facilities reduce water consumption by 60% while ensuring zero harmful discharge into local water sources.</p>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Clean Energy Transition</h3>
+                    <p>70% of our operations are powered by renewable energy sources including solar and wind power, with plans to achieve 100% renewable energy usage by 2025.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <!-- Process Section -->
+<section class="process-section">
+    <div class="container">
+        <h2 class="section-title">Our Sustainability Journey</h2>
+        <div class="process-timeline">
+            <div class="process-item">
+                <div class="process-content">
+                    <h3>Assessment & Planning</h3>
+                    <p>Comprehensive environmental impact assessment and development of sustainability roadmap with clear targets, milestones, and measurable outcomes for continuous improvement.</p>
+                </div>
+                <div class="process-number">1</div>
+            </div>
+            <div class="process-item">
+                <div class="process-content">
+                    <h3>Implementation</h3>
+                    <p>Rolling out eco-friendly practices across all operations, from raw material sourcing to final product delivery, ensuring every step follows sustainable protocols.</p>
+                </div>
+                <div class="process-number">2</div>
+            </div>
+            <div class="process-item">
+                <div class="process-content">
+                    <h3>Monitoring & Optimization</h3>
+                    <p>Continuous monitoring of environmental metrics and optimization of processes to achieve maximum sustainability impact while maintaining product quality and efficiency.</p>
+                </div>
+                <div class="process-number">3</div>
+            </div>
+            <div class="process-item">
+                <div class="process-content">
+                    <h3>Innovation & Growth</h3>
+                    <p>Investing in new technologies and innovations that further reduce environmental impact while expanding our sustainable product range and market reach.</p>
+                </div>
+                <div class="process-number">4</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Certifications Section -->
+    <section class="certifications-section">
+        <div class="container">
+            <h2 class="section-title">Our Certifications & Standards</h2>
+            <div class="certifications-grid">
+                <div class="certification-item">
+                    <div class="certification-logo">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>ISO 14001</h4>
+                    <p>Environmental Management Systems certification ensuring systematic approach to environmental protection and continuous improvement in our operations.</p>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-logo">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h4>Global Organic Textile Standard</h4>
+                    <p>GOTS certification for organic fiber processing and compliance with environmental and social criteria throughout the textile supply chain.</p>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-logo">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h4>Cradle to Cradle Certified</h4>
+                    <p>Product certification for safe, circular, and responsibly made products, ensuring materials are healthy for humans and the environment.</p>
+                </div>
+                <div class="certification-item">
+                    <div class="certification-logo">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Fair Trade Certified</h4>
+                    <p>Commitment to fair wages, safe working conditions, and community development in our supply chain partnerships worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Partner with Us for a Sustainable Future</h2>
+                <p>Join us in making a positive impact on the environment. Discover how our sustainable practices can benefit your business while contributing to a healthier planet for future generations.</p>
+                <a href="contact.html" class="cta-btn">Contact Our Sustainability Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col fade-in-up">
+                    <img src="872e34ef-3af0-4bcc-a413-ad69a7ad9cef-removebg-preview.png" alt="NA" class="footer-logo">
+                    <p>we transform your ideas into high-quality plastic components with precision, innovation, and care.</p>
+                    <!-- <p>Innovative composite solutions for marine, industrial, and aerospace applications.</p> -->
+                    <!-- <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div> -->
+                </div>
+                <div class="footer-col fade-in-up">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="Sustainability.html">Sustainability</a></li>
+                    <li><a href="services.html" >Process</a></li>
+                        <!-- <li><a href="applications.html">Applications</a></li> -->
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col fade-in-up">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="products.html#product-categories-section">Household</a></li>
+                        <li><a href="products.html#product-categories-section">Healthcare</a></li>
+                        <li><a href="products.html#product-categories-section">Electrical</a></li>
+                        <li><a href="products.html#product-categories-section">Custom Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col fade-in-up">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 916/2 wagodia gidc 391760 vadodara gujarat.</li>
+                        <li><i class="fas fa-phone"></i>+91 9157757979</li>
+                        <li><i class="fas fa-envelope"></i>Swasttikplasticindustries@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2020 - Swasttik Plastic Industries. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="js - Copy\about.js"></script>
+    </body>
+    </html>
