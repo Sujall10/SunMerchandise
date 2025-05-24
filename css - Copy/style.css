@@ -1,13 +1,26 @@
-:root {
-    --primary-color: #FFFFFF;
+/* :root {
+    --primary-color: #ffffff;
     --secondary-color: #F5F5F5;
-    --accent-color: #FF6B00;
+    --accent-color: #fcba05;
     --light-color: #F5F5F5;
     --dark-color: #FFFFFF;
     --text-color: #333333;
     --text-light: #666666;
-    --white: #FFFFFF;
-    --black: #000000;
+    --white: #0e82ef;
+    --black: #FFFFFF;
+    --font-main: 'Roboto', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+} */
+:root {
+    --primary-color: #0d1b2a;         /* Deep navy blue for premium feel */
+    --secondary-color: #1b263b;       /* Slightly lighter navy for contrast */
+    --accent-color: #fcbf49;          /* Rich golden yellow */
+    --light-color: #e0e1dd;           /* Elegant light gray for background or borders */
+    --dark-color: #0a1128;            /* Darker blue for footer or overlays */
+    --text-color: #fefefe;            /* Light text for dark backgrounds */
+    --text-light: #cbd5e1;            /* Muted light for subtle text */
+    --white: #ffffff;                 /* True white */
+    --black: #000000;                 /* True black for deep contrast if needed */
     --font-main: 'Roboto', sans-serif;
     --font-heading: 'Montserrat', sans-serif;
 }
@@ -186,7 +199,7 @@ a:hover {
 }
 
 .main-nav ul li a {
-    color: var(--text-color);
+    color: var(--dark-color);
     font-weight: 600;
     padding: 10px 0;
     position: relative;
@@ -240,8 +253,8 @@ a:hover {
 }
 
 .dropdown-content a:hover {
-    background-color: var(--secondary-color);
-    color: var(--black);
+    background-color: var(--light-color);
+    color: var(--primary-color);
 }
 
 /* Mobile Menu */
@@ -348,7 +361,8 @@ a:hover {
     height: 80vh;
     min-height: 600px;
     overflow: hidden;
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
+    background: linear-gradient(135deg, var(--secondary-color), var(--white));
 }
 
 .hero-slider {
@@ -391,6 +405,7 @@ a:hover {
 .slide-content h1 {
     font-size: 48px;
     margin-bottom: 20px;
+    /* color: var(--white); */
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
 }
 
@@ -468,6 +483,10 @@ a:hover {
     flex: 1;
 }
 
+.about-section .section-title{
+    color: var(--white);
+}
+
 .about-image img {
     width: 100%;
     border-radius: 8px;
@@ -526,6 +545,10 @@ a:hover {
     background-color: var(--secondary-color);
 }
 
+.products-section .section-title{
+    color: var(--white);
+}
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -536,7 +559,7 @@ a:hover {
     background-color: var(--white);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgb(0, 0, 0);
     transition: all 0.3s ease;
     transform: translateY(30px);
     opacity: 0;
@@ -571,12 +594,17 @@ a:hover {
 
 .product-card p {
     padding: 0 20px;
-    color: var(--text-light);
+    color: var(--black);
     font-size: 14px;
 }
 
 .product-card .btn {
     margin: 20px;
+    background-color: var(--dark-color);
+}
+
+.product-card .btn:hover{
+    background-color: var(--accent-color);
 }
 
 /* Applications Section */
@@ -790,11 +818,15 @@ a:hover {
     }
 }
 
+.testimonials-section .section-title{
+    color: var(--white);
+}
+
 .testimonial p {
     font-size: 18px;
     font-style: italic;
     margin-bottom: 20px;
-    color: var(--text-color);
+    color: var(--black);
     position: relative;
 }
 
@@ -802,7 +834,7 @@ a:hover {
 .testimonial p::after {
     content: '"';
     font-size: 24px;
-    color: var(--accent-color);
+    color: var(--primary-color);
     opacity: 0.5;
 }
 
@@ -1212,7 +1244,7 @@ a:hover {
 
 /* About Page Specific Styles */
 .page-banner {
-    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+    background: linear-gradient(135deg, var(--secondary-color), var(--white)), 
                 url('About\ company.jpg') center/cover no-repeat;
     color: var(--black);
     padding: 150px 0 90px;
@@ -1297,7 +1329,7 @@ a:hover {
 .about-text {
     flex: 1;
     transform: translateX(-20px);
-    opacity: 0;
+    opacity: 0.5;
     transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
@@ -1348,6 +1380,20 @@ a:hover {
     position: relative;
 }
 
+.mission-vision-section .section-title{
+    color: var(--white);
+}
+
+#product-categories-section .section-title{
+    color: var(--primary-color);
+}
+
+#product-categories-section {
+    padding: 6rem 0;
+    background-color: var(--white);
+    position: relative;
+}
+
 .mv-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1389,15 +1435,25 @@ a:hover {
     align-items: center;
     justify-content: center;
     margin: 0 auto 2rem;
-    color: var(--accent-color);
+    /* color: var(--primary-color); */
     font-size: 2rem;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.mv-card:hover .mv-icon {
+.mv-card .mv-icon{
+    background-color: var(--primary-color);
+}
+
+.mv-card .btn{
+    background-color: var(--primary-color);
+}
+
+.mv-card .btn:hover{
     background-color: var(--accent-color);
-    color: var(--white);
-    transform: scale(1.1) rotate(10deg);
+}
+
+.mv-card .mv-icon:hover{
+    background-color: var(--primary-color);
 }
 
 .mv-card h3 {
@@ -1408,14 +1464,14 @@ a:hover {
 }
 
 .mv-card p {
-    color: var(--text-light);
+    color: var(--black);
     line-height: 1.7;
     transition: color 0.3s ease;
 }
 
 .mv-card:hover h3,
 .mv-card:hover p {
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 /* Timeline Section */
@@ -1439,7 +1495,7 @@ a:hover {
     transform: translateX(-50%);
     width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, var(--accent-color), var(--secondary-color));
+    background: linear-gradient(to bottom, var(--primary-color), var(--light-color));
     z-index: 1;
 }
 
@@ -1467,7 +1523,7 @@ a:hover {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--accent-color);
+    background-color: var(--primary-color);
     color: var(--white);
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
@@ -1545,13 +1601,17 @@ a:hover {
 
 .timeline-item:hover .timeline-content h4,
 .timeline-item:hover .timeline-content p {
-    color: var(--text-color);
+    color: var(--dark-color);
 }
 
 /* Team Section */
 .team-section {
     padding: 6rem 0;
     background-color: var(--secondary-color);
+}
+
+.team-section .section-header h2{
+    color: var(--white);
 }
 
 .team-grid {
@@ -1580,8 +1640,12 @@ a:hover {
 .team-member:hover {
     transform: translateY(-10px) !important;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    /* color: var(--dark-color); */
 }
 
+.team-member:hover .bio{
+    color: var(--dark-color);
+}
 .team-member img {
     width: 150px;
     height: 150px;
@@ -1673,6 +1737,10 @@ a:hover {
     background-color: var(--secondary-color);
 }
 
+.contact-section .section-title{
+    color: var(--white);
+}
+
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1682,6 +1750,15 @@ a:hover {
 /* Contact Info Column */
 .contact-info {
     padding-right: 20px;
+    /* color: var(--white); */
+}
+
+.contact-section .info-content h4{
+    color: var(--white);
+}
+
+.contact-section .contact-social h4{
+    color: var(--white);
 }
 
 .section-title {
@@ -1736,7 +1813,7 @@ a:hover {
     transform: translateY(0);
 }
 
-.info-icon {
+.contact-section .info-icon {
     flex: 0 0 50px;
     height: 50px;
     background-color: rgba(255, 102, 0, 0.1);
@@ -1751,8 +1828,8 @@ a:hover {
 }
 
 .info-item:hover .info-icon {
-    background-color: var(--accent-color);
-    color: var(--white);
+    background-color: var(--light-color);
+    color: var(--accent-color);
     transform: translateY(-3px);
 }
 
@@ -1791,21 +1868,21 @@ a:hover {
     gap: 15px;
 }
 
-.social-links a {
+.contact-social .social-links a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.1);
-    color: var(--text-light);
+    background-color: rgba(255, 102, 0, 0.1);
+    color: var(--accent-color);
     transition: all 0.3s ease;
 }
 
-.social-links a:hover {
-    background-color: var(--accent-color);
-    color: var(--white);
+.contact-social .social-links a:hover {
+    background-color: var(--light-color);
+    color: var(--accent-color);
 }
 
 /* Contact Form */
@@ -1850,7 +1927,7 @@ a:hover {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: var(--text-light);
+    color: var(--secondary-color);
 }
 
 .form-group input,
@@ -1899,16 +1976,21 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+.map-section{
+    margin: 30px;
+}
+
 /* Office Section Styling */
 .offices-section {
     padding: 60px 0;
     background-color: var(--secondary-color);
 }
 
-.section-title {
+.offices-section .section-title {
     text-align: center;
+    /* margin-top: 30px; */
     margin-bottom: 40px;
-    color: var(--black);
+    color: var(--white);
     font-size: 2.2rem;
     position: relative;
 }
@@ -1952,7 +2034,7 @@ a:hover {
 
 .office-card p {
     margin-bottom: 12px;
-    color: var(--text-light);
+    color: var(--secondary-color);
     line-height: 1.5;
 }
 
