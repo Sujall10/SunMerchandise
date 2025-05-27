@@ -474,6 +474,10 @@ a:hover {
             padding: 80px 0;
         }
 
+        .initiatives-section .section-title{
+            color: var(--primary-color);
+        }
+
         .initiatives-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -896,6 +900,48 @@ a:hover {
     color: var(--white);
     transform: translateY(-5px);
 }
+
+.reveal-animation {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.reveal-animation.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.underline-animation {
+    position: relative;
+    display: inline-block;
+}
+
+.underline-animation::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.underline-animation:hover::after {
+    width: 100%;
+}
   
         /* Responsive Styles */
         @media (max-width: 768px) {
@@ -1093,7 +1139,7 @@ a:hover {
     <!-- Initiatives Section -->
     <section class="initiatives-section">
         <div class="container">
-            <h2 class="section-title">Our Sustainability Initiatives</h2>
+            <h2 class="section-title underline-animation fade-in-up">Our Sustainability Initiatives</h2>
             <div class="initiatives-grid">
                 <div class="initiative-card">
                     <div class="initiative-icon">
@@ -1145,7 +1191,7 @@ a:hover {
     <!-- Process Section -->
 <section class="process-section">
     <div class="container">
-        <h2 class="section-title">Our Sustainability Journey</h2>
+        <h2 class="section-title underline-animation fade-in-up">Our Sustainability Journey</h2>
         <div class="process-timeline">
             <div class="process-item">
                 <div class="process-content">

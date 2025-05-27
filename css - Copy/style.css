@@ -1018,6 +1018,10 @@ a:hover {
     width: 100%;
 }
 
+.page-banner.about {
+    background-image: url("../SunMerchandise_Products/About_us.jpg");
+}
+
 /* Back to Top Button */
 .back-to-top {
     position: fixed;

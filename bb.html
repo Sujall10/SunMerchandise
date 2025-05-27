@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Clients - Allure Global Sourcing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d1b2a;         /* Deep navy blue */
+            --secondary-color: #1b263b;       /* Slightly lighter navy */
+            --accent-color: #fcbf49;          /* Rich golden yellow */
+            --light-color: #e0e1dd;           /* Light gray */
+            --dark-color: #0a1128;            /* Darker blue */
+            --text-color: #333;               /* Dark text */
+            --text-light: #777;               /* Light text */
+            --white: #ffffff;                 /* White */
+            --black: #000000;                 /* Black */
+            --font-main: 'Roboto', sans-serif;
+            --font-heading: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-family: var(--font-heading);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .clients-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clients-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.05) 50%, transparent 51%);
+            background-size: 20px 20px;
+            animation: moveBg 30s linear infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Clients Section */
+        .clients-section {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .client-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .client-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.6s forwards; }
+        .client-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.8s forwards; }
+        .client-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 1.0s forwards; }
+        .client-card:nth-child(4) { animation: fadeInUp 0.6s ease-out 1.2s forwards; }
+        .client-card:nth-child(5) { animation: fadeInUp 0.6s ease-out 1.4s forwards; }
+        .client-card:nth-child(6) { animation: fadeInUp 0.6s ease-out 1.6s forwards; }
+
+        .client-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .client-logo {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background-color: var(--white);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .client-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        .client-card:hover .client-logo img {
+            filter: grayscale(0%);
+        }
+
+        .client-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .client-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .client-info p {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .client-industry {
+            display: inline-block;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 100px 0;
+            background-color: var(--light-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .testimonials-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .testimonial.active {
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+        }
+
+        .testimonial-content {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .testimonial-content::before,
+        .testimonial-content::after {
+            content: '"';
+            font-size: 60px;
+            color: var(--accent-color);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-content::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .testimonial-content::after {
+            bottom: -40px;
+            right: -20px;
+        }
+
+        .client-details {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid var(--accent-color);
+        }
+
+        .client-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .client-name {
+            text-align: left;
+        }
+
+        .client-name h4 {
+            font-size: 18px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .client-name p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            margin: 0 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-color);
+        }
+
+        .testimonial-dot.active {
+            background-color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .cta-container {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+        }
+
+        .cta-container h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-container p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 80px 0 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .footer-col:nth-child(1) h3 { animation: fadeInUp 0.6s ease-out 0.8s forwards; }
+        .footer-col:nth-child(2) h3 { animation: fadeInUp 0.6s ease-out 1.0s forwards; }
+        .footer-col:nth-child(3) h3 { animation: fadeInUp 0.6s ease-out 1.2s forwards; }
+        .footer-col:nth-child(4) h3 { animation: fadeInUp 0.6s ease-out 1.4s forwards; }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-col p, .footer-col a {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .footer-col:nth-child(1) p,
+        .footer-col:nth-child(1) a { animation: fadeInUp 0.6s ease-out 1.0s forwards; }
+        .footer-col:nth-child(2) a { animation: fadeInUp 0.6s ease-out 1.2s forwards; }
+        .footer-col:nth-child(3) a { animation: fadeInUp 0.6s ease-out 1.4s forwards; }
+        .footer-col:nth-child(4) p { animation: fadeInUp 0.6s ease-out 1.6s forwards; }
+
+        .footer-col a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--white);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .social-links a:nth-child(1) { animation: fadeInUp 0.6s ease-out 1.2s forwards; }
+        .social-links a:nth-child(2) { animation: fadeInUp 0.6s ease-out 1.3s forwards; }
+        .social-links a:nth-child(3) { animation: fadeInUp 0.6s ease-out 1.4s forwards; }
+        .social-links a:nth-child(4) { animation: fadeInUp 0.6s ease-out 1.5s forwards; }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-light);
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 1.8s forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes moveBg {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .clients-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .clients-hero {
+                height: 50vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .clients-hero {
+                height: 40vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .client-card {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .testimonial-content {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">ALLURE GLOBAL SOURCING</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product-development.html">Product Development</a></li>
+                    <li><a href="merchandising.html">Merchandising</a></li>
+                    <li><a href="design.html">Design</a></li>
+                    <li><a href="clients.html" class="active">Clients</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="clients-hero">
+        <div class="hero-content">
+            <h1>Our Valued Clients</h1>
+            <p>We partner with leading brands worldwide to deliver exceptional fashion solutions</p>
+            <a href="#clients" class="btn">View Our Clients</a>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients-section" id="clients">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trusted By Global Brands</h2>
+                <p>We're proud to collaborate with innovative brands across the fashion industry, helping them bring their visions to life through our comprehensive services.</p>
+            </div>
+            
+            <div class="clients-grid">
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="https://via.placeholder.com/200x100?text=Brand+1" alt="Client Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>Urban Chic</h3>
+                        <p>Contemporary women's apparel brand based in New York</p>
+                        <span class="client-industry">Apparel</span>
+                    </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="https://via.placeholder.com/200x100?text=Brand+2" alt="Client Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>Active Lifestyle</h3>
+                        <p>Performance wear for fitness enthusiasts worldwide</p>
+                        <span class="client-industry">Activewear</span>
+                    </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="https://via.placeholder.com/200x100?text=Brand+3" alt="Client Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>Heritage Woolens</h3>
+                        <p>Premium wool clothing manufacturer since 1952</p>
+                        <span class="client-industry">Woollens</span>
+                    </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="https://via.placeholder.com/200x100?text=Brand+4" alt="Client Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>Little Wonders</h3>
+                        <p>Children's clothing with playful designs</p>
+                        <span class="client-industry">Kids Wear</span>
+                    </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="https://via.placeholder.com/200x100?text=Brand+5" alt="Client Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>Home & Hearth</h3>
+                        <p>Luxury home textiles and soft furnishings</p>
+                        <span class="client-industry">Home Textiles</span>
+                    </div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-logo">
+                        <img src="https://via.placeholder.com/200x100?text=Brand+6" alt="Client Logo">
+                    </div>
+                    <div class="client-info">
+                        <h3>Paws & Claws</h3>
+                        <p>Designer pet accessories and apparel</p>
+                        <span class="client-industry">Pet Accessories</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container testimonials-container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from some of our valued partners about their experience working with Allure Global Sourcing</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <div class="testimonial-content">
+                        Allure Global Sourcing has been instrumental in helping us scale our production while maintaining quality. Their design team in London perfectly captured our brand aesthetic, and their merchandising team ensured we hit all our delivery deadlines.
+                    </div>
+                    <div class="client-details">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="client-name">
+                            <h4>Sarah Johnson</h4>
+                            <p>CEO, Urban Chic</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        We've worked with many sourcing companies, but Allure stands out for their transparency and reliability. Their product development team in India helped us create a best-selling line that exceeded our sales projections by 40%.
+                    </div>
+                    <div class="client-details">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                        </div>
+                        <div class="client-name">
+                            <h4>Michael Chen</h4>
+                            <p>Head of Product, Active Lifestyle</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        The team at Allure Global Sourcing has become an extension of our own. Their market knowledge and trend forecasting have helped us stay ahead of competitors. Their design studios in the US and UK provide invaluable local insights.
+                    </div>
+                    <div class="client-details">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez">
+                        </div>
+                        <div class="client-name">
+                            <h4>Emma Rodriguez</h4>
+                            <p>Creative Director, Little Wonders</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-nav">
+                <div class="testimonial-dot active" data-index="0"></div>
+                <div class="testimonial-dot" data-index="1"></div>
+                <div class="testimonial-dot" data-index="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container cta-container">
+            <h2>Ready to Partner With Us?</h2>
+            <p>Join our growing list of satisfied clients who trust us to deliver exceptional fashion products on time and to specification.</p>
+            <a href="contact.html" class="btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <p>Allure Global Sourcing is a leading fashion manufacturing partner helping brands bring their products to market efficiently and cost-effectively.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <a href="product-development.html">Product Development</a>
+                    <a href="merchandising.html">Merchandising</a>
+                    <a href="design.html">Design</a>
+                    <a href="#">Sourcing</a>
+                    <a href="#">Production</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="clients.html">Clients</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Fashion Ave, Suite 456<br>New York, NY 10001</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@allureglobalsourcing.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Allure Global Sourcing. All rights reserved. <a href="allureglobalsourcing.com">allureglobalsourcing.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentTestimonial = index;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showTestimonial(index);
+            });
+        });
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000);
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.client-card, .section-title, .footer-col h3, .footer-col p, .footer-col a, .social-links a');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.animationPlayState = 'running';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
